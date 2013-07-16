@@ -47,8 +47,11 @@ int SendFlg=0;
 
 void main(void)
 {
-    TRISC=0;
+    TRISC0=0;
     ANSC0 = 0;
+
+    TRISB7 = 0;
+
     // Setup Clock
     OSCCONbits.IRCF = 0xf; // HFINT 16MHz
     
@@ -112,17 +115,19 @@ void init_uart(void)
 
 void init_clc(void)
 {
-    LC3EN = 0;
-    LC3D4S = 4; // TXUART
+    CLC3CON = 0;
+
 
     CLC3GLS0 = 0x02;
     CLC3GLS1 = 0X40;
     CLC3GLS2 = 0X00;
     CLC3GLS3 = 0X00;
-    CLC3SEL0 = 0X04;
-    CLC3SEL1 = 0X00;
+    CLC3SEL0 = 0X00;
+    CLC3SEL1 = 0X04;
     CLC3POL  = 0X00;
-    CLC3CON  = 0XC0;
+    CLC3CON  = 0XC0; //LC3OE=1,LC3EN=1;
+
+
 
 
 }
